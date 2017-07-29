@@ -1,0 +1,28 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[CWT_GetCpuMemorySpace](@HOSTIP varchar(250))
+As
+Begin
+
+		SELECT CONVERT(decimal(5,2), avg(pm.[PER_CPU_USAGE])) AVGCPUUSAGE, 
+		CONVERT(decimal(5,2), avg(pm.[PER_AVAILABLEMEMORY])) AVGAVAILABLEMEMORY,
+		avg(pm.[PER_TOTALMEMORY]) TOTALMEMORY,
+		DATEPART(hh, pm.[PER_CREATED_DATE]) HOURRT, 
+		DATEPART(DAY, pm.[PER_CREATED_DATE]) DATERT
+		  from dbo.[CSM_SERVERPERFORMANCE] pm
+		  where pm.[PER_CPU_USAGE] > 0
+		  and pm.[PER_CREATED_DATE] >= dateadd(hh, -23,GETDATE())
+		  and  pm.[PER_CREATED_DATE] <= GETDATE()
+		  --and pm.[PER_HOSTIP] = @HOSTIP
+		  GROUP BY DATEPART(hh, pm.[PER_CREATED_DATE]),DATEPART(DAY, pm.[PER_CREATED_DATE])
+		  		  order by DATERT, HOURRT  
+
+End			  	
+GO
+
+

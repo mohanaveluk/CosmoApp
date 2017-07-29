@@ -1,0 +1,249 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Login.master.cs" Inherits="Cosmo.Web.Login" %>
+<%@ Import Namespace="Cosmo.Entity" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <link rel="shortcut icon" href="images/icon/favicon-16x16.png" type="image/x-icon"/>
+    <link rel="icon" href="images/icon/favicon-16x16.png" type="image/x-icon"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="style/css/bootstrap.css" rel="stylesheet"/>
+    <link href="style/top-navigation.css" rel="stylesheet"/>
+	<!--<link href="style/dropdowns-enhancement.css" rel="stylesheet">-->
+	<link href="style/jqsimplemenu.css" rel="stylesheet" />
+    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="style/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="style/sticky-footer-navbar.css" rel="stylesheet"/>
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../script/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../script/ie-emulation-modes-warning.js" type="text/javascript"></script>
+    <script src="../script/angular.min.js" type="text/javascript"></script>
+    <script src="../script/angular-messages.js" type="text/javascript"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" language="javascript">
+        function ActivateCosmo() {
+            location.href = "ActivateProduct.aspx";
+        }
+
+        $(document).ready(function() {
+           // $('#modReachUs').modal('show');    
+            $('#modReachUs').on('show.bs.modal', function (event) {
+
+            });
+            $('#helpModal').on('show.bs.modal', function (event) {
+
+            });
+
+            $('#helpModal').on('hide.bs.modal', function (event) {
+                loadVideo('', 560, 349);
+                $('ul.nav li').removeClass('active');
+            });
+
+
+            $('a.chelp').on('click', function (e) {
+                //e.preventDefault();
+                loadVideo($(this).data('vcode'), 560,349);
+            });
+            $('ul.nav li').on('click', function () {
+                $(this).parent().find('li.active').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+
+        function loadVideo(viLink, width, height) {
+            $('#videoWrap').html("<iframe width='" + width + "'' height='" + height + "' src='" + viLink + "' frameborder='0' allowfullscreen='true' vmode='transparent'></iframe>");
+        }
+
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="bg-image">
+    
+    <div>
+	    <div class="top-header">
+		    <div class="container-fluid">
+			    <div class="row vcenter">
+			      <div class="col-md-4">
+						    <div class="imge">
+                                <img src="../images/cosmo_transp_1.png" alt="CosmoLogo" width="200"/>
+                            </div>
+						    <div class="logoHeader"></div>		  
+				    </div>
+				    <div class="col-md-4 text-center" runat="server" id="divLicenseStatus">
+				        <%
+                            if (Session["LicenseStatus"] != null)
+				            {
+                                var licenseStatus = (LicenseStatus)Session["LicenseStatus"];
+                                var statusText = string.Format("{0}", licenseStatus.Message);
+                                if (licenseStatus.Type != "Licensed")
+                                {
+				        %>
+                            <span class='lic-trial'><%= statusText %></span>
+				            <div class='form-group'>
+				                <label class='col-md-4 control-label' for='singlebutton'></label>
+				                <div class='col-md-4 center-block'>
+					                <button id='singlebutton' name='singlebutton' class='btn btn-success center-block' onclick="ActivateCosmo()">
+						                Activate Now
+					                </button>
+				                </div>  
+				            </div>
+                        <%
+                                }
+				            }
+                        %>
+				    </div>
+				    <div class="col-md-4">
+				        <ul class="nav navbar-nav navbar-right">
+                            <%--<li><a href="#" class="head-right-link" data-toggle="modal" data-target="#helpModal"><span class="glyphicon glyphicon-th-list"></span> Help</a></li>--%>
+                            <li><a href="../help/cosmo-guide.pdf" class="head-right-link" target="_blank"><span class="glyphicon glyphicon-th-list"></span> Help</a></li>
+                            <li><a href="#modReachUs" class="head-right-link" data-toggle="modal"><span class="glyphicon glyphicon-phone-alt"></span> Reach Us</a></li>
+                          </ul>
+				    </div>
+			    </div>		
+		    </div>
+	    </div>
+        <!-- Fixed navbar --><!--
+        <nav class="navbar navbar-default navbar" >
+          <div class="container-fluid" >
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#"></a>
+            </div>
+          </div>
+        </nav>-->
+            
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+        <footer class="footer">
+          <div class="container">
+            <div class="row text-muted" >
+                <div class="col-sm-4">
+                    Copyrights © 2016
+                </div>
+                <div class="col-sm-4 text-center"><a href="http://www.teamclutch.com" target="_blank">www.teamclutch.com</a></div>
+                <div class="col-sm-4 text-right">
+                    Support:
+                    <a href="mailto:HelloCosmo@teamclutch.com">HelloCosmo@teamclutch.com</a>
+                </div>
+            </div>		
+          </div>
+        </footer>
+    </div>
+
+    <!--cONTACT uS-->
+     <div class="modal fade bs-example-modal-lg" id="modReachUs" tabindex="-1" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">REACH US</h4>
+          </div>
+          <div class="modal-body">
+            <br />
+                <div class="row">
+                    <div class="col-sm-5 text-center">  
+                        <img width="200" height="" alt="" src="../images/cosmo_reachus.jpg">
+                    </div>
+                    <div class="col-sm-7">  
+                        <address>             
+                            <strong> Corporate Office:</strong><br />
+                            Team Clutch<br />
+                            15303 Ventura Blvd., Suite 900<br />
+                            Sherman Oaks, CA 91403<br />
+                        </address>
+                        <br />
+                        <address>             
+                            Email: <a href="mailto:hellocosmo@teamclutch.com">hellocosmo@teamclutch.com</a><br />
+                            Phone: +1(323) 473-3070<br />
+                            Fax: +1(323) 206-5228<br />
+                            Web: <a href="http://www.teamclutch.com" target="_blank">www.teamclutch.com</a>
+                        </address>
+
+                    </div>
+                </div>
+          </div>
+          <div class="modal-footer ">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--cONTACT uS-->
+
+    <!--Help-->
+    <div class="modal fade  bs-example-modal-lg" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                     <h4 class="modal-title">HELP</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#" class="chelp" data-vcode="https://www.youtube.com/embed/2_PIbw5050k?autoplay=1&loop=1&rel=0&wmode=transparent">Cosmo overview</a></li>
+                                <li><a href="#" class="chelp" data-vcode="https://www.youtube.com/embed/2_PIbw5050k?autoplay=1&loop=1&rel=0&wmode=transparent">Link 2</a></li>
+                                <li><a href="#" class="chelp" data-vcode="https://www.youtube.com/embed/2_PIbw5050k?autoplay=1&loop=1&rel=0&wmode=transparent">Link 3</a></li>
+                                <li><a href="#" class="chelp" data-vcode="https://www.youtube.com/embed/2_PIbw5050k?autoplay=1&loop=1&rel=0&wmode=transparent">Link 4</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-9">
+                            <div id="videoWrap" class="videoWrapper" data-video="">
+                                Click lhe link on the left side to play the help video's
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Help-->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script  type="text/javascript">        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../style/js/bootstrap.min.js"  type="text/javascript"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../script/ie10-viewport-bug-workaround.js"  type="text/javascript"></script>
+    <script src="../script/bootstrap-hover-dropdown.js"  type="text/javascript"></script>
+    <script src="../script/jqsimplemenu.js"  type="text/javascript"></script>
+    <!--<script src="script/dropdowns-enhancement.min.js"></script>-->
+    <script src="../script/user_navigation.js"  type="text/javascript"></script>
+
+</body>
+</html>

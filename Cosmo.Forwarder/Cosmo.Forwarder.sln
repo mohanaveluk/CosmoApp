@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmo.Forwarder", "Cosmo.Forwarder\Cosmo.Forwarder.csproj", "{1E94C680-A669-4DC1-B967-2427956D30C7}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Cosmo.ForwarderSetup", "Cosmo.ForwarderSetup\Cosmo.ForwarderSetup.vdproj", "{448A4654-7385-4588-8829-640C27B5DE92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E94C680-A669-4DC1-B967-2427956D30C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E94C680-A669-4DC1-B967-2427956D30C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E94C680-A669-4DC1-B967-2427956D30C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E94C680-A669-4DC1-B967-2427956D30C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{448A4654-7385-4588-8829-640C27B5DE92}.Debug|Any CPU.ActiveCfg = Debug
+		{448A4654-7385-4588-8829-640C27B5DE92}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

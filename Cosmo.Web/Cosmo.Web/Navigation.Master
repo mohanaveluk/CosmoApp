@@ -1,0 +1,487 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Navigation.master.cs" Inherits="Cosmo.Web.Navigation" %>
+<%@ Import Namespace="Cosmo.Entity" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <meta charset="utf-8" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <%--http://favicon-generator.org/--%>
+
+    <link rel="shortcut icon" href="images/icon/favicon-16x16.png" type="image/x-icon"/>
+    <link rel="icon" href="images/icon/favicon-16x16.png" type="image/x-icon"/>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="style/css/bootstrap.css" rel="stylesheet" />
+    <link href="style/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="style/top-navigation.css" rel="stylesheet" />
+    <!--<link href="style/dropdowns-enhancement.css" rel="stylesheet">-->
+    <link href="style/jqsimplemenu.css" rel="stylesheet" />
+    <%--    <link href="style/css3-buttons.css" rel="stylesheet"/>
+    --%>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="style/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="style/sticky-footer-navbar.css" rel="stylesheet" />
+    <link href="style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="style/popup.css" rel="stylesheet" type="text/css" />
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../script/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../style/js/moment.min.js" type="text/javascript"></script>
+    <script src="../style/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../script/ie-emulation-modes-warning.js" type="text/javascript"></script>
+    <script src="../script/angular.min.js" type="text/javascript"></script>
+    <script src="../script/angular-messages.min.js" type="text/javascript"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="-https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="-https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            // $('#modReachUs').modal('show');    
+            $('#modReachUs').on('show.bs.modal', function (event) {
+
+            });
+            $('#helpModal').on('show.bs.modal', function (event) {
+
+            });
+
+            $('#helpModal').on('hide.bs.modal', function (event) {
+                loadVideo('', 560, 349);
+                $('ul.nav li').removeClass('active');
+            });
+
+
+            $('a.chelp').on('click', function (e) {
+                //e.preventDefault();
+                loadVideo($(this).data('vcode'), 560, 349);
+            });
+            $('ul.nav li').on('click', function () {
+                $(this).parent().find('li.active').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            $('#ulMenuItems a').click(function () {
+                console.log('asa');
+            });
+        });
+
+        function loadVideo(viLink, width, height) {
+            $('#videoWrap').html("<iframe width='" + width + "'' height='" + height + "' src='" + viLink + "' frameborder='0' allowfullscreen='true' vmode='transparent'></iframe>");
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div>
+        <div class="top-header">
+            <div class="container-fluid">
+                <div class="row vcenter">
+                    <div class="col-md-4">
+                        <div class="imge">
+                            <img src="../images/cosmo_transp_1.png" alt="CosmoLogo" width="200"/>
+                        </div>
+                        <div class="logoHeader">
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center" runat="server" id="divLicenseStatus">
+                        <%
+                            if (Session["LicenseStatus"] != null)
+                            {
+                                var licenseStatus = (LicenseStatus)Session["LicenseStatus"];
+                                var statusText = string.Format("{0}", licenseStatus.Message);
+                                if (licenseStatus.Type != "Licensed")
+                                {
+                        %>
+                            <span class='lic-trial'><%= statusText %></span>
+                            <div class='form-group'>
+                                <label class='col-md-4 control-label' for='singlebutton'></label>
+                                <div class='col-md-4 center-block'>
+                                    <button id='singlebutton' name='singlebutton' class='btn btn-success center-block' onclick="ActivateCosmo()">
+                                        Activate Now
+                                    </button>
+                                </div>
+                            </div>
+                        <%
+                                }
+                            }
+                        %>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="btn-group pull-right">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-hover="dropdown"
+                                role="button" aria-haspopup="true" aria-expanded="false"><span class="name-label"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp; Welcome, <%=Convert.ToString(HttpContext.Current.Session["_LOGGED_USERNAME"])%>&nbsp;&nbsp;<span
+                                        class="caret"></span> </span></a>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu">
+                            <% if ((string) HttpContext.Current.Session["_LOGGED_USERROLE"] == "Administrator")
+                               {%>
+                                <li class="dropdown-submenu dropdown-menu-right"><a href="#" style="white-space: normal;">Setting</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a tabindex="-1" href="../forms/RegisterUser.aspx">Manage User</a></li>
+                                        <li><a href="../forms/Smtp.aspx">Email Server</a></li>
+                                    </ul>
+                                </li>
+                                <li class="divider"></li>
+                            <%} %>
+                                <li class="dropdown-submenu dropdown-menu-right"><a href="#" style="white-space: normal;">Profile</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a tabindex="-1" href="../forms/ResetPasswprd.aspx">Reset Password</a></li>
+                                    </ul>
+                                </li>
+<%--                                <li class="dropdown-submenu dropdown-menu-right"><a tabindex="-1" href="#">More options</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a tabindex="-1" href="#">Second level</a></li>
+                                        <!--
+                                        <li class="dropdown-submenu">
+                                        <a href="#">More..</a>
+                                        <ul class="dropdown-menu">
+                                        <li><a href="#">3rd level</a></li>
+                                        <li><a href="#">3rd level</a></li>
+                                        </ul>
+                                        </li>-->
+                                        <li><a href="#">Second level</a></li>
+                                        <li><a href="#">Second level</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Something else here</a></li>--%>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar">
+        <div class="container-fluid" >
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav" runat="server" id="ulMenuItems"></ul>
+
+            <ul class="nav navbar-nav navbar-right">
+            <%--<li><a href="#" class="head-right-link" data-toggle="modal" data-target="#helpModal"><span class="glyphicon glyphicon-th-list"></span> Help</a></li>--%>
+            <li><a href="../help/cosmo-guide.pdf" class="head-right-link" target="_blank"><span class="glyphicon glyphicon-th-list"></span> Help</a></li>
+            <li><a href="#" class="head-right-link" data-toggle="modal" data-target="#modReachUs"><span class="glyphicon glyphicon-phone-alt"></span> Reach us</a></li>
+            <li><a href="../login/Default.aspx"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+
+        </div>
+        </div>
+        </nav>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row text-muted" >
+                    <div class="col-sm-4">
+                        Copyrights © 2016
+                    </div>
+                    <div class="col-sm-4 text-center"><a href="http://www.teamclutch.com" target="_blank">www.teamclutch.com</a></div>
+                    <div class="col-sm-4 text-right">
+                        Support:
+                        <a href="mailto:HelloCosmo@teamclutch.com">HelloCosmo@teamclutch.com</a>
+                    </div>
+                </div>		
+            </div>
+        </footer>
+    </div>
+    <!--Begin Page Progress-->
+    <div id="fade-process">
+    </div>
+    <div id="modal-process">
+        <img id="loader" src="../images/ajax-loader.gif" alt="Processing..." />
+    </div>
+    <!--End of Page Progress-->
+    <!--cONTACT uS-->
+    <div class="modal fade bs-example-modal-lg" id="modReachUs" tabindex="-1" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        REACH US</h4>
+                </div>
+                <div class="modal-body">
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-5 text-center">
+                            <img width="200" height="" alt="" src="../images/cosmo_reachus.jpg">
+                        </div>
+                        <div class="col-sm-7">
+                            <address>
+                                <strong>Corporate Office:</strong><br />
+                                Team Clutch<br />
+                                15303 Ventura Blvd., Suite 900<br />
+                                Sherman Oaks, CA 91403<br />
+                            </address>
+                            <br />
+                            <address>
+                                Email: <a href="mailto:hellocosmo@teamclutch.com">hellocosmo@teamclutch.com</a><br />
+                                Phone: +1(323) 473-3070<br />
+                                Fax: +1(323) 206-5228<br />
+                                Web: <a href="http://www.teamclutch.com" target="_blank">www.teamclutch.com</a>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!--cONTACT uS-->
+    
+    <!--Daily Status report - start-->
+    <div class="modal fade bs-example-modal-lg" id="modalSubscriptionSetting" tabindex="-1" aria-labelledby="myLargeModalLabel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        Daily Report Subscription</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe src="../forms/SubscriptionSetting.aspx" id="info" frameborder="0" class="iframe" name="info" seamless="" height="600" width="100%"></iframe>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnSubscriptionClose">
+                        Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!--Daily Status report - end-->
+
+    <!--UrlPerformanceDetails - start-->
+    <div class="modal fade bs-example-modal-lg" id="modalUrlPerformanceDetails" tabindex="-1" aria-labelledby="myLargeModalLabel" role="dialog" data-refresh="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        URL Performance</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe src="../Loading.html" id="IframeUrlPerformance" frameborder="0" class="iframe" name="info" seamless="" height="280" width="100%"></iframe>
+                </div>
+                <div class="modal-footer">
+<%--                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnRefresh">
+                        Refresh</button>--%>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnUrlPerformanceClose">
+                        Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!--UrlPerformanceDetails - end-->
+
+   
+    <!--UrlPerformanceDetails - start-->
+    <div class="modal fade bs-example-modal-lg" id="modalServerPerformance" tabindex="-1" aria-labelledby="myLargeModalLabel" role="dialog" data-refresh="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        Server Performance</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe src="../Loading.html" id="Iframe1ServerPerformance" frameborder="0" class="iframe" name="info" seamless="" height="480" width="100%"></iframe>
+                </div>
+                <div class="modal-footer">
+<%--                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnRefresh">
+                        Refresh</button>--%>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnServerPerformanceClose">
+                        Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!--UrlPerformanceDetails - end-->
+    
+    <!--Open Cognos Micro screen- start-->
+    <div class="modal fade bs-example-modal-lg" id="modalMicroScreen" tabindex="-1" aria-labelledby="myLargeModalLabel" role="dialog" data-refresh="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        Cognos Portal</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divMicroProgress" class="text-center"><img src='../images/ajax-loader.gif' alt="Loading" /></div>
+                    <div class="alert alert-danger" id="microErrorMessage" role="alert"><span class='glyphicon glyphicon-info-sign'></span></div>                    
+                    <iframe src="../Loading.html" id="iframMicro" frameborder="0" class="iframe" name="info" seamless="" height="470px" width="100%"></iframe>
+                </div>
+                <div class="modal-footer">
+<%--                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnRefresh">
+                        Refresh</button>--%>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="Button1">
+                        Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!--Open Cognos Micro screen - end-->
+
+    <!--Help-->
+    <div class="modal fade  bs-example-modal-lg" id="helpModal" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;</button>
+                    <h4 class="modal-title">
+                        HELP</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#" class="chelp" data-vcode="https://www.youtube.com/embed/2_PIbw5050k?autoplay=1&loop=1&rel=0&wmode=transparent">
+                                    Cosmo overview</a></li>
+                                <li><a href="#" class="chelp" data-vcode="https://www.youtube.com/embed/2_PIbw5050k?autoplay=1&loop=1&rel=0&wmode=transparent">
+                                    Link 2</a></li>
+                                <li><a href="#" class="chelp" data-vcode="https://www.youtube.com/embed/2_PIbw5050k?autoplay=1&loop=1&rel=0&wmode=transparent">
+                                    Link 3</a></li>
+                                <li><a href="#" class="chelp" data-vcode="https://www.youtube.com/embed/2_PIbw5050k?autoplay=1&loop=1&rel=0&wmode=transparent">
+                                    Link 4</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-9">
+                            <div id="videoWrap" class="videoWrapper" data-video="">
+                                Click lhe link on the left side to play the help video's
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Help-->
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript">        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+    <script src="../style/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../script/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
+    <script src="../script/bootstrap-hover-dropdown.js" type="text/javascript"></script>
+    <script src="../script/jqsimplemenu.js" type="text/javascript"></script>
+    <!--<script src="script/dropdowns-enhancement.min.js"></script>-->
+    <script src="../script/user_navigation.js" type="text/javascript"></script>
+    <script src="../script/printreport.js" type="text/javascript"></script>
+
+    <script type="text/javascript" language="javascript">
+        function ActivateCosmo() {
+            location.href = "../login/ActivateProduct.aspx";
+        }
+
+        function openModal() {
+            document.getElementById('modal-process').style.display = 'block';
+            document.getElementById('fade-process').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-process').style.display = 'none';
+            document.getElementById('fade-process').style.display = 'none';
+        }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $("img").tooltip({ container: 'body' });
+            $(".rowdelete").tooltip({ container: 'body' });
+
+//            $("td").tooltip({ container: 'body' });
+//            $("button").tooltip({ container: 'body' });
+//            
+//            $("table>tbody>tr>a>").tooltip({ container: 'body' });
+//            $("table>tbody>tr>td>a>span").tooltip({ container: 'body' });
+//            $("table>tbody>tr>td>img").tooltip({ container: 'table' });
+
+            $('#modalSubscriptionSetting1').on('shown.bs.modal', function () {
+                $(this).find('iframe').attr('src', '../forms/SubscriptionSetting.aspx');
+            });
+
+            $('#modalUrlPerformanceDetails').on('shown.bs.modal', function (event) {
+                var link = $(event.relatedTarget);
+                var envId = link.data("eid");
+                $(this).find('iframe').attr('src', '../forms/UrlPerformanceDetails.aspx?e=' + envId);
+            });
+
+            $('#modalServerPerformance').on('shown.bs.modal', function (event) {
+                var link = $(event.relatedTarget);
+                var host = link.data("host");
+                $(this).find('iframe').attr('src', '../forms/ServerPerformanceDetails.aspx?h=' + host);
+            });
+
+             $('#btnSubscriptionClose').click(function () {
+                $("#modalSubscriptionSetting").find('iframe').attr('src', '../forms/SubscriptionSetting.aspx');
+            });
+
+            $('.close').click(function () {
+                $("#modalSubscriptionSetting").find('iframe').attr('src', '../forms/SubscriptionSetting.aspx');
+                $("#modalUrlPerformanceDetails").find('iframe').attr('src', '../Loading.html');
+            });
+
+            $('#btnUrlPerformanceClose').click(function () {
+                $("#modalUrlPerformanceDetails").find('iframe').attr('src', '../Loading.html');
+            });
+
+            $('#btnServerPerformanceClose').click(function () {
+                $("#modalServerPerformance").find('iframe').attr('src', '../Loading.html');
+            });
+
+            $("#btnRefresh").click(function() {
+                var src = $('#IframeUrlPerformance').attr('src');
+                $('#IframeUrlPerformance').attr('src', src);
+            });
+
+        });
+    </script>
+</body>
+</html>

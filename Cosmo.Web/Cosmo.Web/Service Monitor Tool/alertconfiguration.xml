@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Monitor>
+  <UrlPerformance>
+    <config name="url" value="1" unit="sec"></config>
+  </UrlPerformance>
+</Monitor>

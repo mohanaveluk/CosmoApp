@@ -1,0 +1,390 @@
+﻿@model GenerateCosmoKey.Models.CustomerInfo
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Cosmo - Generate License key ";
+}
+
+<div class="container">
+    <div ng-controller='mainController'>
+        <form class="form-horizontal" action="">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">Cosmo - Generate License key </div>
+                <div class="panel-body">
+                    <br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Internal key</label>
+                        <div class="col-sm-10" style="width: 500px">
+                            <input type="text" class="form-control" id="txtInternalKey" name="InternalKey" placeholder="Internal  key"/>
+
+                        </div>
+                        <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Available list</label>
+                        <div class="col-sm-10" style="width: 500px">
+                            <table class="table table-bordered table-striped" border="0" id="records_table">
+                                <tr>
+                                    <th>Sr#</th>
+                                    <th>Activation Key</th>
+                                    <th>License Type</th>
+                                    <th>Generated Date</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @{ var pType = ViewBag.PackageType; }
+                        <label for="inputEmail3" class="col-sm-2 control-label">Package Type</label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="rdoPackage" id="rdoWeb" value="W" checked="@((pType == "W"))"/> Web Only
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="rdoPackage" id="rdoMobile" value="M"  checked="@((pType == "M"))"/> Web with Mobile
+                        </label>
+                    </div>
+                            
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Confirmation number</label>
+                        <div class="col-sm-10" style="width: 500px">
+                            <input type="text" class="form-control" id="txtConfirmationNumber" name="ConfirmationNumber" placeholder="Confirmation number"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Organization name</label>
+                        <div class="col-sm-10" style="width: 500px">
+                            <input type="text" class="form-control" id="txtOrganization" name="OrganizationName" placeholder="Organization name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">First name</label>
+                        <div class="col-sm-10" style="width: 500px">
+                            <input type="text" class="form-control" id="txtFirstName" name="FirstName" placeholder="First name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Last name</label>
+                        <div class="col-sm-10" style="width: 500px">
+                            <input type="text" class="form-control" id="txtLastName" name="LastName" placeholder="Last name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Email id</label>
+                        <div class="col-sm-10" style="width: 500px">
+                            <input type="text" class="form-control" id="txtEmail" name="Email" placeholder="Email address"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Contact number</label>
+                        <div class="col-sm-10" style="width: 500px">
+                            <input type="text" class="form-control" id="txtContactNumber" name="ContactNumber" placeholder="Contact number"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">License period</label>
+                        <div class="col-sm-10" style="width: 500px">
+                            <select class="form-control" id="drpLicensePeriod" placeholder="Period">
+                                <option value="1">30 days</option>
+                                @*<option value="2">60 days</option>*@
+                                @*<option value="3">90 days</option>*@
+                                <option value="4">Full License</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" id="btnSubmit" class="btn btn-primary">Generate Key</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Activation Key</label>
+                        <div class="col-sm-10" style="width: 700px">
+                            <input type="text" class="form-control" id="txtActivationKey" placeholder="Activation key">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <script language="javascript" type="text/javascript">
+        $(document)
+            .ready(function() {
+                if ($('#txtInternalKey').val() == '') {
+                    $('#btnSubmit').attr('disabled', 'disabled');
+                    $('#btnSearch').attr('disabled', 'disabled');
+                }
+
+                $("select, input")
+                    .keyup(function() {
+                        EnableButton();
+                    });
+
+                $('#btnSubmit')
+                    .click(function() {
+                        var data = {
+                            orgNamee: $('#txtOrganization').val(),
+                            firstName: $('#txtFirstName').val(),
+                            lastName: $('#txtLastName').val(),
+                            emailId: $('#txtEmail').val(),
+                            contactNumber: $('#txtContactNumber').val(),
+                            licenseType: $('#drpLicensePeriod').val(),
+                            internalKey: $('#txtInternalKey').val(),
+                            confirmationNumber: $('#txtConfirmationNumber').val()
+                        };
+
+                        $('#btnSubmit').val('Please wait...');
+                        $('#act_status').remove();
+                        $.ajax({
+                            url: "CreateLicense/SubmitInfo",
+                            type: "POST",
+                            data: JSON.stringify(data),
+                            dataType: "JSON",
+                            contentType: "application/json",
+                            success: function(d) {
+                                console.log('Success\r\n');
+                                console.log(d);
+                                $(this).val('Generate Key');
+                                if (d.Status.indexOf('Unsuccess') >= 0) {
+                                    $('#btnSubmit').after('<span id="act_status">' + d.Status + '</span>');
+                                    $('#txtActivationKey').val('');
+                                } else if (d.Status.indexOf('earlier') >= 0) {
+                                    $('#txtActivationKey').val(d.CustomerInfo.ActivationKey);
+                                    $('#btnSubmit')
+                                        .after('<span class="g-status" id="act_status">' + d.Status + '</span>');
+                                } else {
+                                    $('#txtActivationKey').val(d.CustomerInfo.ActivationKey);
+                                    $('#btnSubmit')
+                                        .after('<span class="g-status" id="act_status">Activation key generated successfully</span>');
+                                }
+                            },
+                            error: function(d) {
+                                console.log('error\r\n');
+                                console.log(d);
+                                $('#btnSubmit').val('Generate Key');
+                                $('#btnSubmit').after('<span id="act_status">' + d.Status + '</span>');
+                            }
+
+                        });
+                    });
+
+                $('#btnSearch')
+                    .click(function() {
+                        var data = {
+                            internalKey: $('#txtInternalKey').val(),
+                            id: "0"
+                        };
+
+                        $.ajax({
+                            url: "CreateLicense/GetActivationList",
+                            type: "POST",
+                            data: JSON.stringify(data),
+                            dataType: "JSON",
+                            contentType: "application/json",
+                            success: ShowActivationList,
+                            error: ShowError
+                        });
+
+                    });
+            });
+
+            function ShowActivationList(response) {
+            console.log(response);
+            var data = response.List;
+            $('#records_table').html('');
+                var $tr = $('<tr>')
+                    .append(
+                        $('<th>').text('Sr#'),
+                        $('<th>').text('Activation Key'),
+                        $('<th>').text('License Type'),
+                        $('<th>').text('Generated Date'))
+                    .appendTo('#records_table');
+
+            if (response.Status === "Success") {
+                $.each(data,
+                    function(i, item) {
+                        $tr = $('<tr>')
+                            .append(
+                                $('<td>').text(i + 1),
+                                $('<td>')
+                                .text(item.ActivationKey.substring(0, 5) +
+                                    '...' +
+                                    item.ActivationKey
+                                    .substring(item.ActivationKey.length - 4, item.ActivationKey.length)),
+                                $('<td>')
+                                .html('<a href="#" onclick="GetLicenseDetails(' +
+                                    item.Id +
+                                    ')">' +
+                                    item.LicenseTypeDesc +
+                                    '</a>'),
+                                $('<td>').text(formatJSONDate(item.CreatedDateTime)))
+                            .appendTo('#records_table');
+                    });
+            } else {
+                $tr = $('<tr colspan=4>')
+                    .append(
+                        $('<td style>').text('No data available..')
+                    )
+                    .appendTo('#records_table');
+            }
+
+            if(response.PackageType === "W") {
+                $("#rdoWeb").attr("checked", true);
+            }
+            else if (response.PackageType === "M") {
+                $("#rdoMobile").attr("checked", true);
+            }
+
+            $('#txtOrganization').val('');
+            $('#txtFirstName').val('');
+            $('#txtLastName').val('');
+            $('#txtEmail').val('');
+            $('#txtContactNumber').val('');
+            $('#drpLicensePeriod').val('');
+            $('#txtActivationKey').val('');
+            $('#txtConfirmationNumber').val('');
+            $('#act_status').remove();
+            $('#btnSubmit').attr('disabled', 'disabled');
+        }
+
+        function ShowError(response) {
+            $('#records_table').html('');
+            var $tr = $('<tr>').append(
+                $('<th>').text('Error')
+            ).appendTo('#records_table');
+
+            $tr = $('<tr colspan=4>').append(
+                $('<td style>').text(response.Status)
+            ).appendTo('#records_table');
+        }
+
+        function GetLicenseDetails(licId) {
+            var data = {
+                internalKey: "",
+                id: licId
+            };
+
+            $.ajax({
+                url: "CreateLicense/GetActivationList",
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json",
+                success: ShowActivationDetails,
+                error: ShowErrorActivationDetails
+            });
+
+            return false;
+        }
+
+        function ShowActivationDetails(response) {
+            var data = '';
+            if (response.List != null && response.List.length > 0)
+                data = response.List[0];
+
+            if (response.Status === "Success") {
+                $('#txtOrganization').val(data.OrganizationName);
+                $('#txtFirstName').val(data.FirstName);
+                $('#txtLastName').val(data.LastName);
+                $('#txtEmail').val(data.EmailId);
+                $('#txtContactNumber').val(data.PhoneNUmber);
+                $('#drpLicensePeriod').val(data.LicenseType);
+                $('#txtActivationKey').val(data.ActivationKey);
+                $('#txtConfirmationNumber').val(data.ConfirmationNumber);
+                $('#btnSubmit').removeAttr('disabled');
+            }
+        }
+
+        function ShowErrorActivationDetails(response) {
+
+        }
+
+        function checkEmail(emailAddress) {
+            var sQtext = '[^\\x0d\\x22\\x5c\\x80-\\xff]';
+            var sDtext = '[^\\x0d\\x5b-\\x5d\\x80-\\xff]';
+            var sAtom = '[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+';
+            var sQuotedPair = '\\x5c[\\x00-\\x7f]';
+            var sDomainLiteral = '\\x5b(' + sDtext + '|' + sQuotedPair + ')*\\x5d';
+            var sQuotedString = '\\x22(' + sQtext + '|' + sQuotedPair + ')*\\x22';
+            var sDomain_ref = sAtom;
+            var sSubDomain = '(' + sDomain_ref + '|' + sDomainLiteral + ')';
+            var sWord = '(' + sAtom + '|' + sQuotedString + ')';
+            var sDomain = sSubDomain + '(\\x2e' + sSubDomain + ')*';
+            var sLocalPart = sWord + '(\\x2e' + sWord + ')*';
+            var sAddrSpec = sLocalPart + '\\x40' + sDomain; // complete RFC822 email address spec
+            var sValidEmail = '^' + sAddrSpec + '$'; // as whole string
+
+            var reValidEmail = new RegExp(sValidEmail);
+
+            return reValidEmail.test(emailAddress);
+        }
+
+        function HasError(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        }
+
+        function ClearError(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        }
+
+        function formatJSONDate(dateAsFromServerSide) {
+            //http://codeasp.net/assets/demos/blogs/convert-net-datetime-to-javascript-date.aspx
+            //var newDate = dateFormat(jsonDate, "mm/dd/yyyy HH:MM");
+            var jsonparsedDate = new Date(parseInt(dateAsFromServerSide.substr(6)));
+            var jsDate = new Date(jsonparsedDate); //Date object
+            var cMonth = (jsDate.getMonth() + 1).toString().length === 1 ? '0' + parseInt(jsDate.getMonth() + 1) : parseInt(jsDate.getMonth() + 1);
+            var cDate = jsDate.getDate().toString().length === 1 ? '0' + jsDate.getDate() : jsDate.getDate();
+            var cYear = jsDate.getFullYear().toString().length === 1 ? '0' + jsDate.getFullYear() : jsDate.getFullYear();
+
+            var cHour = jsDate.getHours().toString().length === 1 ? '0' + jsDate.getHours() : jsDate.getHours();
+            var cMin = jsDate.getMinutes().toString().length === 1 ? '0' + jsDate.getMinutes() : jsDate.getMinutes();
+            var cSec = jsDate.getSeconds().toString().length === 1 ? '0' + jsDate.getSeconds() : jsDate.getSeconds();
+
+            var convertedDateTime = cMonth + '/' + cDate + '/' + cYear + ' ' + cHour + ':' + cMin + ':' + cSec;
+            return convertedDateTime;
+        }
+
+        function EnableButton() {
+            ClearError($('#txtEmail'));
+            if ($('#txtInternalKey').val() !== '' && $('#txtInternalKey').val().length > 11) {
+                $('#btnSearch').removeAttr('disabled');
+            } else {
+                $('#btnSearch').attr('disabled', 'disabled');
+            }
+
+            if ($('#txtOrganization').val() !== '' && $('#txtOrganization').val().length > 2
+                && $('#txtFirstName').val() !== '' && $('#txtFirstName').val().length > 2
+                && $('#txtLastName').val() !== '' && $('#txtLastName').val().length > 2
+                && $('#txtEmail').val() !== '' && checkEmail($('#txtEmail').val())
+                && $('#txtInternalKey').val() !== '' && $('#txtInternalKey').val().length > 11
+                && $('#txtConfirmationNumber').val() !== '' && $('#txtConfirmationNumber').val().length > 2) {
+                $('#btnSubmit').removeAttr('disabled');
+                if (!checkEmail($('#txtEmail').val())) {
+                    HasError('txtEmail');
+                } else {
+                    ClearError('txtEmail');
+                }
+            } else {
+                $('#btnSubmit').attr('disabled', 'disabled');
+            }
+
+            if ($('#txtEmail').val().length > 0) {
+
+                if (!checkEmail($('#txtEmail').val())) {
+                    HasError($('#txtEmail'));
+                } else {
+                    ClearError($('#txtEmail'));
+                }
+            }
+        }
+    </script>
+<style>
+    .g-status {
+        margin-left: 10px;
+        
+    }
+</style>
