@@ -1,0 +1,204 @@
+12/17/2016 2:20:59 AM : Options :Cosmo Monitor Service - start - 
+12/17/2016 2:20:59 AM : System name: SNOWFLAKE
+12/17/2016 2:20:59 AM : Application code executed using : NT AUTHORITY\SYSTEM
+12/17/2016 2:20:59 AM : Service Name: Cosmo Monitor Service
+12/17/2016 2:20:59 AM : Host Name: 
+12/17/2016 2:20:59 AM : Service Status: Stopped
+12/17/2016 2:20:59 AM : Can Stop: False
+12/17/2016 2:20:59 AM : Can Pause and Continue = False
+12/17/2016 2:20:59 AM : Can shutdown: False
+12/17/2016 2:20:59 AM : Starting service...
+12/17/2016 2:20:59 AM : Service...Running
+4/22/2017 5:59:28 AM : Options :Cosmo Monitor Service - start - 
+4/22/2017 5:59:28 AM : System name: SNOWFLAKE
+4/22/2017 5:59:28 AM : Application code executed using : NT AUTHORITY\SYSTEM
+4/22/2017 5:59:28 AM : Service Name: Cosmo Monitor Service
+4/22/2017 5:59:28 AM : Host Name: 
+4/22/2017 5:59:28 AM : Service Status: Stopped
+4/22/2017 5:59:28 AM : Can Stop: False
+4/22/2017 5:59:28 AM : Can Pause and Continue = False
+4/22/2017 5:59:28 AM : Can shutdown: False
+4/22/2017 5:59:29 AM : Starting service...
+4/22/2017 5:59:29 AM : Service...Running
+4/22/2017 7:41:22 AM : Options :Cosmo Monitor Service - start - 
+4/22/2017 7:41:22 AM : System name: SNOWFLAKE
+4/22/2017 7:41:22 AM : Application code executed using : NT AUTHORITY\SYSTEM
+4/22/2017 7:41:22 AM : Service Name: Cosmo Monitor Service
+4/22/2017 7:41:22 AM : Host Name: 
+4/22/2017 7:41:22 AM : Service Status: Stopped
+4/22/2017 7:41:22 AM : Can Stop: False
+4/22/2017 7:41:22 AM : Can Pause and Continue = False
+4/22/2017 7:41:22 AM : Can shutdown: False
+4/22/2017 7:41:22 AM : Starting service...
+4/22/2017 7:41:23 AM : Service...Running
+4/23/2017 4:14:09 AM : Options :Cosmo Monitor Service - stop - 
+4/23/2017 4:14:09 AM : System name: SNOWFLAKE
+4/23/2017 4:14:09 AM : Application code executed using : NT AUTHORITY\SYSTEM
+4/23/2017 4:14:09 AM : Service Name: Cosmo Monitor Service
+4/23/2017 4:14:09 AM : Host Name: 
+4/23/2017 4:14:09 AM : Service Status: Running
+4/23/2017 4:14:09 AM : Can Stop: True
+4/23/2017 4:14:09 AM : Can Pause and Continue = False
+4/23/2017 4:14:09 AM : Can shutdown: True
+4/23/2017 4:14:09 AM : To stop service...
+4/23/2017 4:14:09 AM : Stopping service...
+4/23/2017 4:14:10 AM : Service...Stopped
+4/23/2017 4:14:13 AM : Options :Cosmo Monitor Service - start - 
+4/23/2017 4:14:13 AM : System name: SNOWFLAKE
+4/23/2017 4:14:13 AM : Application code executed using : NT AUTHORITY\SYSTEM
+4/23/2017 4:14:13 AM : Service Name: Cosmo Monitor Service
+4/23/2017 4:14:13 AM : Host Name: 
+4/23/2017 4:14:13 AM : Service Status: Stopped
+4/23/2017 4:14:13 AM : Can Stop: False
+4/23/2017 4:14:13 AM : Can Pause and Continue = False
+4/23/2017 4:14:13 AM : Can shutdown: False
+4/23/2017 4:14:13 AM : Starting service...
+4/23/2017 4:14:13 AM : Service...Running
+4/23/2017 4:15:49 AM : Options :Cosmo Monitor Service - stop - 
+4/23/2017 4:15:49 AM : System name: SNOWFLAKE
+4/23/2017 4:15:49 AM : Application code executed using : NT AUTHORITY\SYSTEM
+4/23/2017 4:15:49 AM : Service Name: Cosmo Monitor Service
+4/23/2017 4:15:49 AM : Host Name: 
+4/23/2017 4:15:49 AM : Service Status: Running
+4/23/2017 4:15:49 AM : Can Stop: True
+4/23/2017 4:15:49 AM : Can Pause and Continue = False
+4/23/2017 4:15:49 AM : Can shutdown: True
+4/23/2017 4:15:49 AM : To stop service...
+4/23/2017 4:15:49 AM : Stopping service...
+4/23/2017 4:15:49 AM : Service...Stopped
+4/23/2017 4:15:52 AM : Options :Cosmo Monitor Service - start - 
+4/23/2017 4:15:52 AM : System name: SNOWFLAKE
+4/23/2017 4:15:52 AM : Application code executed using : NT AUTHORITY\SYSTEM
+4/23/2017 4:15:52 AM : Service Name: Cosmo Monitor Service
+4/23/2017 4:15:52 AM : Host Name: 
+4/23/2017 4:15:52 AM : Service Status: Stopped
+4/23/2017 4:15:52 AM : Can Stop: False
+4/23/2017 4:15:52 AM : Can Pause and Continue = False
+4/23/2017 4:15:52 AM : Can shutdown: False
+4/23/2017 4:15:52 AM : Starting service...
+4/23/2017 4:15:53 AM : Service...Running
+4/23/2017 6:45:47 AM : Options :Cosmo Monitor Service - stop - 
+4/23/2017 6:45:47 AM : System name: SNOWFLAKE
+4/23/2017 6:45:47 AM : Application code executed using : NT AUTHORITY\SYSTEM
+4/23/2017 6:45:47 AM : Service Name: Cosmo Monitor Service
+4/23/2017 6:45:47 AM : Host Name: 
+4/23/2017 6:45:47 AM : Service Status: Running
+4/23/2017 6:45:47 AM : Can Stop: True
+4/23/2017 6:45:47 AM : Can Pause and Continue = False
+4/23/2017 6:45:47 AM : Can shutdown: True
+4/23/2017 6:45:47 AM : To stop service...
+4/23/2017 6:45:47 AM : Stopping service...
+4/23/2017 6:45:47 AM : Service...Stopped
+4/23/2017 6:45:50 AM : Options :Cosmo Monitor Service - start - 
+4/23/2017 6:45:50 AM : System name: SNOWFLAKE
+4/23/2017 6:45:50 AM : Application code executed using : NT AUTHORITY\SYSTEM
+4/23/2017 6:45:50 AM : Service Name: Cosmo Monitor Service
+4/23/2017 6:45:50 AM : Host Name: 
+4/23/2017 6:45:51 AM : Service Status: Stopped
+4/23/2017 6:45:51 AM : Can Stop: False
+4/23/2017 6:45:51 AM : Can Pause and Continue = False
+4/23/2017 6:45:51 AM : Can shutdown: False
+4/23/2017 6:45:51 AM : Starting service...
+4/23/2017 6:45:51 AM : Service...Running
+5/12/2017 11:50:56 PM : Options :Cosmo Monitor Service - start - 
+5/12/2017 11:50:56 PM : System name: SNOWFLAKE
+5/12/2017 11:50:56 PM : Application code executed using : NT AUTHORITY\SYSTEM
+5/12/2017 11:50:56 PM : Service Name: Cosmo Monitor Service
+5/12/2017 11:50:56 PM : Host Name: 
+5/12/2017 11:50:56 PM : Service Status: Stopped
+5/12/2017 11:50:56 PM : Can Stop: False
+5/12/2017 11:50:56 PM : Can Pause and Continue = False
+5/12/2017 11:50:56 PM : Can shutdown: False
+5/12/2017 11:50:56 PM : Starting service...
+5/12/2017 11:50:56 PM : Service...Running
+5/17/2017 1:21:05 AM : Options :Cosmo Monitor Service - start - 
+5/17/2017 1:21:05 AM : System name: SNOWFLAKE
+5/17/2017 1:21:05 AM : Application code executed using : NT AUTHORITY\SYSTEM
+5/17/2017 1:21:05 AM : Service Name: Cosmo Monitor Service
+5/17/2017 1:21:05 AM : Host Name: 
+5/17/2017 1:21:05 AM : Service Status: Stopped
+5/17/2017 1:21:05 AM : Can Stop: False
+5/17/2017 1:21:05 AM : Can Pause and Continue = False
+5/17/2017 1:21:05 AM : Can shutdown: False
+5/17/2017 1:21:05 AM : Starting service...
+5/17/2017 1:21:05 AM : Service...Running
+5/17/2017 2:35:10 AM : Options :Cosmo Monitor Service - stop - 
+5/17/2017 2:35:10 AM : System name: SNOWFLAKE
+5/17/2017 2:35:10 AM : Application code executed using : NT AUTHORITY\SYSTEM
+5/17/2017 2:35:10 AM : Service Name: Cosmo Monitor Service
+5/17/2017 2:35:10 AM : Host Name: 
+5/17/2017 2:35:10 AM : Service Status: Running
+5/17/2017 2:35:10 AM : Can Stop: True
+5/17/2017 2:35:10 AM : Can Pause and Continue = False
+5/17/2017 2:35:10 AM : Can shutdown: True
+5/17/2017 2:35:10 AM : To stop service...
+5/17/2017 2:35:10 AM : Stopping service...
+5/17/2017 2:35:10 AM : Service...Stopped
+5/17/2017 2:35:13 AM : Options :Cosmo Monitor Service - start - 
+5/17/2017 2:35:13 AM : System name: SNOWFLAKE
+5/17/2017 2:35:13 AM : Application code executed using : NT AUTHORITY\SYSTEM
+5/17/2017 2:35:13 AM : Service Name: Cosmo Monitor Service
+5/17/2017 2:35:13 AM : Host Name: 
+5/17/2017 2:35:13 AM : Service Status: Stopped
+5/17/2017 2:35:13 AM : Can Stop: False
+5/17/2017 2:35:13 AM : Can Pause and Continue = False
+5/17/2017 2:35:13 AM : Can shutdown: False
+5/17/2017 2:35:13 AM : Starting service...
+5/17/2017 2:35:13 AM : Service...Running
+5/28/2017 6:01:12 AM : Options :Cosmo Monitor Service - start - 
+5/28/2017 6:01:12 AM : System name: SNOWFLAKE
+5/28/2017 6:01:12 AM : Application code executed using : NT AUTHORITY\SYSTEM
+5/28/2017 6:01:12 AM : Service Name: Cosmo Monitor Service
+5/28/2017 6:01:12 AM : Host Name: 
+5/28/2017 6:01:12 AM : Service Status: Stopped
+5/28/2017 6:01:12 AM : Can Stop: False
+5/28/2017 6:01:12 AM : Can Pause and Continue = False
+5/28/2017 6:01:12 AM : Can shutdown: False
+5/28/2017 6:01:12 AM : Starting service...
+5/28/2017 6:01:12 AM : Service...Running
+5/28/2017 6:02:15 AM : Options :Cosmo Monitor Service - stop - 
+5/28/2017 6:02:15 AM : System name: SNOWFLAKE
+5/28/2017 6:02:15 AM : Application code executed using : NT AUTHORITY\SYSTEM
+5/28/2017 6:02:15 AM : Service Name: Cosmo Monitor Service
+5/28/2017 6:02:15 AM : Host Name: 
+5/28/2017 6:02:15 AM : Service Status: Running
+5/28/2017 6:02:15 AM : Can Stop: True
+5/28/2017 6:02:15 AM : Can Pause and Continue = False
+5/28/2017 6:02:15 AM : Can shutdown: True
+5/28/2017 6:02:15 AM : To stop service...
+5/28/2017 6:02:15 AM : Stopping service...
+5/28/2017 6:02:15 AM : Service...Stopped
+5/28/2017 6:02:18 AM : Options :Cosmo Monitor Service - start - 
+5/28/2017 6:02:18 AM : System name: SNOWFLAKE
+5/28/2017 6:02:18 AM : Application code executed using : NT AUTHORITY\SYSTEM
+5/28/2017 6:02:18 AM : Service Name: Cosmo Monitor Service
+5/28/2017 6:02:18 AM : Host Name: 
+5/28/2017 6:02:18 AM : Service Status: Stopped
+5/28/2017 6:02:18 AM : Can Stop: False
+5/28/2017 6:02:18 AM : Can Pause and Continue = False
+5/28/2017 6:02:18 AM : Can shutdown: False
+5/28/2017 6:02:18 AM : Starting service...
+5/28/2017 6:02:18 AM : Service...Running
+5/28/2017 6:04:18 AM : Options :Cosmo Monitor Service - stop - 
+5/28/2017 6:04:18 AM : System name: SNOWFLAKE
+5/28/2017 6:04:18 AM : Application code executed using : NT AUTHORITY\SYSTEM
+5/28/2017 6:04:18 AM : Service Name: Cosmo Monitor Service
+5/28/2017 6:04:18 AM : Host Name: 
+5/28/2017 6:04:18 AM : Service Status: Running
+5/28/2017 6:04:18 AM : Can Stop: True
+5/28/2017 6:04:18 AM : Can Pause and Continue = False
+5/28/2017 6:04:18 AM : Can shutdown: True
+5/28/2017 6:04:18 AM : To stop service...
+5/28/2017 6:04:18 AM : Stopping service...
+5/28/2017 6:04:19 AM : Service...Stopped
+5/28/2017 6:04:52 AM : Options :Cosmo Monitor Service - start - 
+5/28/2017 6:04:52 AM : System name: SNOWFLAKE
+5/28/2017 6:04:52 AM : Application code executed using : NT AUTHORITY\SYSTEM
+5/28/2017 6:04:52 AM : Service Name: Cosmo Monitor Service
+5/28/2017 6:04:52 AM : Host Name: 
+5/28/2017 6:04:52 AM : Service Status: Stopped
+5/28/2017 6:04:52 AM : Can Stop: False
+5/28/2017 6:04:52 AM : Can Pause and Continue = False
+5/28/2017 6:04:52 AM : Can shutdown: False
+5/28/2017 6:04:52 AM : Starting service...
+5/28/2017 6:04:52 AM : Service...Running
