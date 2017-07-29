@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<connectionStrings>
-  <add name="CSMConn" connectionString="Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=snowflake)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe))); user id=Y29zbW9fMDQyMzE3; password=Y29zbW9fMDQyMzE3;Connection Timeout=60;" providerName="System.Data.OracleClient" />
-</connectionStrings>
